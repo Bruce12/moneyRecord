@@ -1,9 +1,11 @@
 <template>
-  <h1>这是登录页面</h1>
+  <div>
+     <h1>省钱控登录页</h1>
+  </div>
 </template>
 <script>
 export default {
-  
+
 }
 </script>
 <style scoped>
