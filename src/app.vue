@@ -1,15 +1,26 @@
 <template>
-    <router-view></router-view>
+  <transition name="router-fade" mode="out-in">
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
+  </transition>
 </template>
+<script>
+import './app/config/rem'
+export default {
+
+}
+</script>
 <style lang="scss">
     /**
  * 导入全局样式
  */
-    @import './app.scss';
+    @import './style/app';
+    	.router-fade-enter-active, .router-fade-leave-active {
+	  	transition: opacity .3s;
+      }
+      .router-fade-enter, .router-fade-leave-active {
+          opacity: 0;
+      }
 </style>
-<script>
-import './app/config/rem'
-export default {
-  
-}
-</script>
+

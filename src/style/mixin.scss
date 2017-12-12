@@ -1,0 +1,8 @@
+@mixin wh($width, $height){
+  width: $width;
+  height: $height;
+}
+@mixin sc($size, $color){
+  font-size: $size;
+  color: $color;
+}

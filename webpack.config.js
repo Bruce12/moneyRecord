@@ -32,8 +32,15 @@ module.exports = {
       }
     ]
   },
-  devServer:{
-    compress:false,
+  devServer: {
+    compress:true,
+    historyApiFallback: true,
+    proxy: {
+      '/login':{
+        target: 'http://120.25.163.62:8083',
+        secure: false
+      }
+    },
     contentBase:[path.join(__dirname,'src'),path.join(__dirname,'src/app')],
     port:9001
   },
