@@ -6,7 +6,6 @@
   </transition>
 </template>
 <script>
-import './app/config/rem'
 export default {
 
 }

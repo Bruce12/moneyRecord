@@ -28,7 +28,8 @@ module.exports = {
       {
         test:/\.js$/,
         exclude:/node_modules/,
-        loader:'babel-loader'
+        loader:'babel-loader',
+        include: [path.resolve('src'), path.resolve('test'), path.resolve('node_modules/vue-awesome')]
       }
     ]
   },
@@ -36,9 +37,10 @@ module.exports = {
     compress:true,
     historyApiFallback: true,
     proxy: {
-      '/login':{
+      '/l/*':{
         target: 'http://120.25.163.62:8083',
-        secure: false
+        secure: false,
+        changeOrigin: true
       }
     },
     contentBase:[path.join(__dirname,'src'),path.join(__dirname,'src/app')],

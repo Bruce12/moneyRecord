@@ -23,15 +23,21 @@
      <div class="other-link">
        <a href="#">免费注册</a>
      </div>
+    <alert-tip v-if="showAlert" :showHide="showAlert" @closeTip="closeTip" :alertText="alertText"></alert-tip>
   </div>
 </template>
 <script>
-import { userLogin } from "../../core/dataService"
+import {userLogin} from "../../core/dataService"
+import {mapMutations} from 'vuex'
+import alertTip from '../../components/common/alertTip'
 export default {
   data(){
     return {
       pwd:'123456',
-      uname: 'kdy123'
+      uname: '',
+      userInfo: null,
+      showAlert: false,
+      alertText: null
     }
   },
   methods: {
@@ -39,12 +45,25 @@ export default {
       let pwd = this.pwd
       let uname = this.uname
       let res = await userLogin(uname,pwd)
+      //请求登录成
       if (res.code === 1){
+        this.userInfo = res.result.sid
+        this.RECORD_USERINFO(this.userInfo)
         this.$router.push({path: '/index'})
       }else{
-
+        this.showAlert = true
+        this.alertText = res.msg
       }
+    },
+    ...mapMutations([
+      'RECORD_USERINFO'
+    ]),
+    closeTip(){
+      this.showAlert = false
     }
+  },
+  components: {
+    alertTip
   }
 }
 </script>

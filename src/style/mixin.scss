@@ -1,8 +1,13 @@
+$rem: 100;
+
 @mixin wh($width, $height){
-  width: $width;
-  height: $height;
+  width: $width / $rem + rem;
+  height: $height / $rem + rem;
 }
 @mixin sc($size, $color){
   font-size: $size;
   color: $color;
+}
+@mixin font($font){
+  font-size: $font / $rem + rem
 }
