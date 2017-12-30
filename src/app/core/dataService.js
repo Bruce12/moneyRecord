@@ -9,7 +9,7 @@ export const userLogin = (uname, pwd) => fetch('/u/l', {
 //获取首页数据列表
 export const getInfo = () => fetch('/h/i', {
   sid: getStore('user_sid')
-})
+},'POST')
 //获取用户
 export const getUser = () => fetch('/h/i', {
 

@@ -34,7 +34,7 @@ export default {
   data(){
     return {
       pwd:'123456',
-      uname: '',
+      uname: 'kdy123',
       userInfo: null,
       showAlert: false,
       alertText: null

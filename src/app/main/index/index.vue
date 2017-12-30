@@ -1,6 +1,13 @@
 <template>
   <div>
-      <h1>这是首页</h1>
+      <div class="header">
+        用户：<span>{{info.nickname}}</span>
+        收入：<span>{{info.allGold}}</span> 
+        今日支出：<span>{{info.todayExpend}}</span>
+      </div>
+      <section>
+       <router-view></router-view>
+      </section>
       <footer-bottom></footer-bottom>
       <loading-top v-if="showLoading"></loading-top>
   </div>
@@ -13,7 +20,8 @@ export default {
   data(){
     return {
       showLoading: false,
-      list: null
+      list: null,
+      info: {}
     }
   },
   components: {
@@ -26,8 +34,7 @@ export default {
       this.$router.go(-1)
     }else{
       this.list = data
-      //设置 userInfo 的值
-
+      this.info = data.result.info
     }
   },
   mounted() {
@@ -36,6 +43,17 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+  .header {
+    border: 1px solid yellow;
+    text-align: center;
+    background: #999999;
+    color: #fff;
+    font-size: .4rem;
+    span {
+      color:aqua;
+      display: inline-block;
+      padding: .08rem;
+    }
+  }
 </style>
 

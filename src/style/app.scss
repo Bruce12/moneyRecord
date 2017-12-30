@@ -1,5 +1,4 @@
 body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, p, h1, h2, h3, h4,h5, h6, i, b, textarea, button, input, select, figure, figcaption, {
-    padding: 0;
     margin: 0;
     list-style: none;
     font-style: normal;
@@ -15,7 +14,7 @@ body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, l
     }
     outline: none;
 }
-input,select,textarea{
+input,select,textarea,span{
     font-size:100%;
 }
 *{
@@ -25,5 +24,4 @@ input,select,textarea{
 html,body{
     overflow-x:hidden;
     background-color: #f0f0f0;
-    font-size: 16px;
 }
