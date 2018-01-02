@@ -23,17 +23,18 @@ export default {
    data() {
      return {
        menus: ['account', 'wallet', 'discover', 'more'],
-       currentIndex: ""
+       currentIndex: ''
      }
    },
    created() {
-
+      this.$emit('change','/account')
    },
    methods: {
       goMenus(index) {
         this.currentIndex = index
         let currentPage ='/' + this.menus[index]
         this.$router.push({path: currentPage})
+        this.$emit('change', currentPage)
       }
    },
    components: {

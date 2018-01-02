@@ -5,10 +5,24 @@
         收入：<span>{{info.allGold}}</span> 
         今日支出：<span>{{info.todayExpend}}</span>
       </div>
-      <section>
-       <router-view></router-view>
+      <section v-if="showIndex">
+          <div class="assets" v-for="item in assets" :key="item.id">
+            <div class="flex_box mb10 bg_grren ptb10">
+              <div class="  ">
+                <icon name="usd"></icon>
+              </div>
+              <div class="flex6 cash">
+                <p>{{item.name}}</p>
+                <p>现金金额</p>
+              </div>
+              <div class="">
+                {{item.gold}}
+              </div>
+            </div>
+          </div>
       </section>
-      <footer-bottom></footer-bottom>
+      <router-view></router-view>
+      <footer-bottom @change="change"></footer-bottom>
       <loading-top v-if="showLoading"></loading-top>
   </div>
 </template>
@@ -21,7 +35,9 @@ export default {
     return {
       showLoading: false,
       list: null,
-      info: {}
+      info: {},
+      showIndex: false,
+      assets: {}
     }
   },
   components: {
@@ -29,12 +45,23 @@ export default {
     footerBottom
   },
   async created() {
-   let data = await getInfo()
+    let data = await getInfo()
+    let cPage = this.$router.currentRoute.fullPath
+    if (['/index'].indexOf(cPage) >= 0 ) {
+      this.showIndex = true
+    }
     if (data.code === 100){
-      this.$router.go(-1)
+      this.$router.push('login')
     }else{
       this.list = data
       this.info = data.result.info
+      this.assets = data.result.assets
+      console.log(this.list)
+    }
+  },
+  methods: {
+    change(...data) {
+       this.showIndex = false
     }
   },
   mounted() {
@@ -55,5 +82,34 @@ export default {
       padding: .08rem;
     }
   }
+  .assets {
+    font-size:.32rem;
+  }
+  .flex_box {
+   display:box;
+   -webkit-display:flex;
+   display: flex;
+   text-justify: center;
+   direction: row;
+   align-items: center;
+   .flex6 {
+     flex: 6;
+   }
+ }
+ .flex_box div,p {
+   color: #fff;
+ }
+ .cash {
+   padding-left: .2rem;
+ }
+ .mb10{
+   margin-bottom: 10px;
+ }
+ .bg_grren{
+     background: rgb(22, 202, 46);
+ }
+ .ptb10 {
+   padding: 10px;
+ }
 </style>
 

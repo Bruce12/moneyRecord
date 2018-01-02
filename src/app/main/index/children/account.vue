@@ -1,5 +1,14 @@
 <template>
   <div>
-      <h1>账户</h1>
+      账户
   </div>
 </template>
+<script>
+export default {
+  
+}
+</script>
+<style scoped>
+
+</style>
+
